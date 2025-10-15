@@ -1,118 +1,70 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>شراء عملات — TikDemo</title>
-<link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Demo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body dir="rtl">
-  <div id="app">
-    <header class="topbar">
-      <div class="logo">
-        <!-- small TikTok-like icon (demo) -->
-        <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align:middle;margin-left:6px">
-          <path d="M12 2v6.5A4.5 4.5 0 1 1 9.5 12H12v8a2 2 0 1 0 2-2v-6.5A4.5 4.5 0 1 0 12 2z" fill="#fff" opacity="0.95"/>
-        </svg>
-        <span class="logo-text">TikTok</span>
-      </div>
-      <div class="wallet">
-        <div class="big-balance" id="bigBalance">523,000,000</div>
-        <div class="small-label">رصيدك الوهمي</div>
-      </div>
+<body>
+    <header>
+        <div class="top-bar">
+            <img src="tiktok-icon.png" alt="TikTok" class="tiktok-icon">
+            <input type="text" placeholder="اسم الحساب" class="account-name">
+            <div class="balance">
+                <span class="amount">543,000,000</span>
+                <img src="tiktok-coin.png" alt="عملة TikTok" class="coin-icon">
+            </div>
+        </div>
     </header>
 
-    <main class="container">
-      <section class="left">
-        <div class="card">
-          <div class="video-placeholder">
-            <div class="video-play">🎬 متجر العملات — نسخة تجريبية</div>
-            <div class="meta">
-              <h3 id="acctNameDisplay">@demo_account</h3>
-              <p>اختر باقة العملة ثم أدخل طريقة الدفع واضغط شراء.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <aside class="rightPanel">
-        <h2>شراء عملات</h2>
-
-        <label>اسم حساب TikTok (اكتب بدون @)</label>
-        <input id="acctName" placeholder="مثال: mohamed_salah" />
-
-        <label>اختر باقة</label>
+    <main>
         <div class="packages">
-          <button class="pkg" data-amount="10000">10,000 ⟁ — $1.99</button>
-          <button class="pkg" data-amount="20000">20,000 ⟁ — $3.99</button>
-          <button class="pkg" data-amount="30000">30,000 ⟁ — $5.99</button>
+            <div class="package" data-value="3000">
+                <span>3,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
+            <div class="package" data-value="4000">
+                <span>4,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
+            <div class="package" data-value="5000">
+                <span>5,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
+            <div class="package" data-value="10000">
+                <span>10,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
+            <div class="package" data-value="20000">
+                <span>20,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
+            <div class="package" data-value="30000">
+                <span>30,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
+            <div class="package" data-value="50000">
+                <span>50,000</span>
+                <img src="tiktok-coin.png" alt="عملة">
+                <input type="number" min="1" max="9" value="1" class="quantity">
+            </div>
         </div>
 
-        <label>طريقة الدفع</label>
-        <div class="pay-methods">
-          <label><input type="radio" name="payMethod" value="visa" checked> Visa</label>
-          <label><input type="radio" name="payMethod" value="master"> MasterCard</label>
-          <label><input type="radio" name="payMethod" value="paypal"> PayPal</label>
+        <button id="buyBtn">شراء</button>
+
+        <div id="successMessage" class="hidden">
+            <span>✔️ تمت العملية بنجاح</span>
         </div>
-
-        <div id="cardSection">
-          <label>بيانات بطاقة (محاكاة)</label>
-          <input id="cardNumber" placeholder="**** **** **** 5432" maxlength="19" />
-          <div class="cardMockDisplay" id="cardMock">
-            <div class="brand" id="cardBrand">VISA</div>
-            <div class="number" id="cardDisplay">**** **** **** 5432</div>
-          </div>
-        </div>
-
-        <div id="paypalSection" style="display:none; margin-top:8px">
-          <button id="payWithPaypal" class="paypal-btn">Pay with PayPal (محاكاة)</button>
-        </div>
-
-        <button id="startPay" class="primary">شراء الآن</button>
-
-        <hr/>
-
-        <div class="history">
-          <h3>سجل المعاملات (محلي)</h3>
-          <ul id="txList"></ul>
-        </div>
-      </aside>
     </main>
 
-    <!-- Payment Modal -->
-    <div id="payModal" class="modal hidden" role="dialog" aria-modal="true">
-      <div class="modal-content">
-        <h2>محاكاة الدفع</h2>
-        <p>جاري معالجة الدفع (محاكاة)...</p>
-        <div class="swipeArea">
-          <div class="cardAnimated" id="cardAnimated">
-            <div class="brand" id="cardAnimatedBrand">VISA</div>
-            <div class="number" id="cardAnimatedNumber">**** **** **** 5432</div>
-            <div class="chip">💳</div>
-          </div>
-        </div>
-        <div style="margin-top:12px">
-          <button id="confirmPay" class="primary">تم</button>
-          <button id="cancelPay" class="secondary">إلغاء</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Success Modal -->
-    <div id="successModal" class="modal hidden">
-      <div class="modal-content success">
-        <div class="big-check" id="bigCheck">✓</div>
-        <h2>تمت العملية بنجاح</h2>
-        <p id="succText">تمت إضافة العملات للمحفظة.</p>
-        <button id="closeSuccess" class="primary">حسناً</button>
-      </div>
-    </div>
-
-    <footer class="footer">
-      <small>ديمو محلي — لا مدفوعات حقيقية. محفوظ محليًا فقط.</small>
-    </footer>
-  </div>
-
-<script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
