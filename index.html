@@ -1,70 +1,82 @@
-
-<!DOCTYPE html>
-<html lang="ar">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Demo</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ديمو احترافي - عملات (نسخة v2)</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="top-bar">
-            <img src="tiktok-icon.png" alt="TikTok" class="tiktok-icon">
-            <input type="text" placeholder="اسم الحساب" class="account-name">
-            <div class="balance">
-                <span class="amount">543,000,000</span>
-                <img src="tiktok-coin.png" alt="عملة TikTok" class="coin-icon">
-            </div>
+<header class="top" role="banner">
+  <div class="left-area">
+    <img src="app-icon.svg" alt="app" class="icon">
+  </div>
+  <div class="center-area">
+    <input class="account" placeholder="اسم الحساب" aria-label="اسم الحساب">
+  </div>
+  <div class="right-area">
+    <div class="balance" aria-hidden="true">
+      <span class="amount">543,000,000</span>
+      <div class="coin-placeholder" aria-hidden="true"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="packages-section" aria-label="باقات العملة">
+    <div class="packages">
+      <button class="package" data-value="3000">3,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+      <button class="package" data-value="4000">4,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+      <button class="package" data-value="5000">5,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+      <button class="package" data-value="10000">10,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+      <button class="package" data-value="20000">20,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+      <button class="package" data-value="30000">30,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+      <button class="package" data-value="50000">50,000 <span class="pkg-icon" aria-hidden="true"></span></button>
+    </div>
+  </section>
+
+  <section class="payment-section">
+    <h3>طرق الدفع (نسخة تجريبية)</h3>
+    <div class="cards">
+      <div class="card" data-type="visa">
+        <div class="card-top">
+          <div class="card-type">Visa</div>
+          <div class="card-check" aria-hidden="true">✓</div>
         </div>
-    </header>
-
-    <main>
-        <div class="packages">
-            <div class="package" data-value="3000">
-                <span>3,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
-            <div class="package" data-value="4000">
-                <span>4,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
-            <div class="package" data-value="5000">
-                <span>5,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
-            <div class="package" data-value="10000">
-                <span>10,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
-            <div class="package" data-value="20000">
-                <span>20,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
-            <div class="package" data-value="30000">
-                <span>30,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
-            <div class="package" data-value="50000">
-                <span>50,000</span>
-                <img src="tiktok-coin.png" alt="عملة">
-                <input type="number" min="1" max="9" value="1" class="quantity">
-            </div>
+        <div class="card-number">4352 •••• •••• ••••</div>
+      </div>
+      <div class="card" data-type="mastercard">
+        <div class="card-top">
+          <div class="card-type">MasterCard</div>
+          <div class="card-check" aria-hidden="true">✓</div>
         </div>
-
-        <button id="buyBtn">شراء</button>
-
-        <div id="successMessage" class="hidden">
-            <span>✔️ تمت العملية بنجاح</span>
+        <div class="card-number">5478 •••• •••• ••••</div>
+      </div>
+      <div class="card" data-type="paypal">
+        <div class="card-top">
+          <div class="card-type">PayPal</div>
+          <div class="card-check" aria-hidden="true">✓</div>
         </div>
-    </main>
+        <div class="card-number">paypal@mido.test</div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <button id="buyBtn" class="buy">شراء</button>
+
+  <!-- modal -->
+  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-icon" id="modalIcon"></div>
+      <div class="modal-check">✔️</div>
+      <div class="modal-text">تمت العملية بنجاح</div>
+      <button id="closeModal" class="modal-close">حسناً</button>
+    </div>
+  </div>
+
+  <footer class="notes">نسخة تجريبية — لا تستخدم بيانات حقيقية</footer>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
